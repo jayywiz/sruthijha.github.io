@@ -5,21 +5,10 @@ Welcome to my personal portfolio website! I'm Sruthijha, a Master's in Data Scie
 This website is hosted via [GitHub Pages](https://sruthijha.github.io) and serves as a central place to showcase my projects, technical skills, and career journey.
 
 ---
+## About Me
 
-## 🌐 Live Site
-
-🔗 [https://sruthijha.github.io](https://sruthijha.github.io)
-
----
-
-## 🧠 About Me
-
-I'm passionate about transforming data into scalable solutions. Currently pursuing my MS in Data Science (MS-DS), I’m focused on:
-
-- Data Engineering & Pipelines  
-- Machine Learning & Analytics  
-- Real-world Project Development  
-- Storytelling with Data  
+I'm Sruthijha — a curious mind with a deep passion for turning messy data into meaningful insights. I'm currently pursuing my Master’s in Data Science, where I’ve been exploring everything from predictive modeling and machine learning to building clean, scalable data pipelines. Along the way, I discovered my love for data engineering — solving real-world problems with efficient systems and clean code. Whether it's forecasting Oscar winners or validating insurance reports, I enjoy diving into data stories that matter. I believe the best data solutions combine creativity, logic, and just the right amount of caffeine.
+ 
 
 ---
 
