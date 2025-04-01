@@ -26,18 +26,7 @@
     .typing {
       font-size: 1.5rem;
       color: #00ff99;
-      border-right: 2px solid #00ff99;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: typing 4s steps(25, end) forwards, blink 0.7s infinite;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 17ch; }
-    }
-    @keyframes blink {
-      50% { border-color: transparent; }
+      height: 40px;
     }
     nav {
       margin-top: 30px;
@@ -73,8 +62,10 @@
 </head>
 <body>
   <header>
-    <h1>Sruthijha Pagolu</h1>
-    <div class="typing">I'm a Data Scientist</div>
+    <h1>Sruthijha</h1>
+    <div class="typing">
+      <span id="typed-text"></span><span class="cursor">|</span>
+    </div>
 
     <nav>
       <a href="#home">Home</a>
@@ -98,6 +89,58 @@
       </a>
     </div>
   </header>
+
+  <script>
+    const phrases = [
+      "a Data Scientist",
+      "a Machine Learning Enthusiast",
+      "a Data Analyst"
+    ];
+    let i = 0;
+    let j = 0;
+    let currentPhrase = [];
+    let isDeleting = false;
+    let isEnd = false;
+
+    const typedText = document.getElementById("typed-text");
+
+    function loop() {
+      isEnd = false;
+      typedText.innerHTML = currentPhrase.join("");
+
+      if (i < phrases.length) {
+        if (!isDeleting && j <= phrases[i].length) {
+          currentPhrase.push(phrases[i][j]);
+          j++;
+        }
+
+        if (isDeleting && j <= phrases[i].length) {
+          currentPhrase.pop(phrases[i][j]);
+          j--;
+        }
+
+        if (j == phrases[i].length) {
+          isEnd = true;
+          isDeleting = true;
+        }
+
+        if (isDeleting && j === 0) {
+          currentPhrase = [];
+          isDeleting = false;
+          i++;
+          if (i === phrases.length) {
+            i = 0;
+          }
+        }
+      }
+      const speedUp = Math.random() * (80 - 50) + 50;
+      const normalSpeed = Math.random() * (150 - 100) + 100;
+      const time = isEnd ? 1000 : isDeleting ? speedUp : normalSpeed;
+      setTimeout(loop, time);
+    }
+
+    loop();
+  </script>
 </body>
 </html>
 
