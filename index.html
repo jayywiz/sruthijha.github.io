@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sruthijha | Data Science Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
@@ -29,11 +30,11 @@
       white-space: nowrap;
       overflow: hidden;
       width: 0;
-      animation: typing 3s steps(20, end) forwards, blink 0.7s infinite;
+      animation: typing 4s steps(25, end) forwards, blink 0.7s infinite;
     }
     @keyframes typing {
       from { width: 0; }
-      to { width: 12ch; }
+      to { width: 17ch; }
     }
     @keyframes blink {
       50% { border-color: transparent; }
@@ -56,11 +57,13 @@
     .socials a {
       margin: 0 10px;
       color: #ffffff;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       text-decoration: none;
       padding: 10px;
       background-color: #21262d;
       border-radius: 50%;
+      display: inline-block;
+      transition: all 0.3s ease;
     }
     .socials a:hover {
       background-color: #00ff99;
@@ -84,9 +87,15 @@
     </nav>
 
     <div class="socials">
-      <a href="https://linkedin.com/in/sruthijha" target="_blank">in</a>
-      <a href="https://github.com/jayywiz" target="_blank">gh</a>
-      <a href="mailto:sruthipagolu@gmail.com">g</a>
+      <a href="https://linkedin.com/in/sruthijha" target="_blank" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/jayywiz" target="_blank" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:sruthipagolu@gmail.com" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
     </div>
   </header>
 </body>
