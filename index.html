@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sruthijha | Data Science Portfolio</title>
+  <title>Sruthijha Pagolu | Data Science Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-v2uJZQEqGHByEx2h8ACVpA3fYOcVrMIja6VVuQGhCVpQnffW6Q1PIlZyIkH+scELQuN7uL2FyW5wKjcA6+HHTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
@@ -27,6 +27,14 @@
       font-size: 1.5rem;
       color: #00ff99;
       height: 40px;
+    }
+    .cursor {
+      display: inline-block;
+      animation: blink 0.7s infinite;
+      color: #00ff99;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
     }
     nav {
       margin-top: 30px;
@@ -79,7 +87,7 @@
 
     <div class="socials">
       <a href="https://linkedin.com/in/sruthijha" target="_blank" title="LinkedIn">
-        <i class="https://fontawesome.com/v5/icons/linkedin-in?f=brands&s=solid"></i>
+        <i class="fab fa-linkedin-in"></i>
       </a>
       <a href="https://github.com/jayywiz" target="_blank" title="GitHub">
         <i class="fab fa-github"></i>
@@ -98,49 +106,40 @@
     ];
     let i = 0;
     let j = 0;
-    let currentPhrase = [];
+    let currentPhrase = "";
     let isDeleting = false;
-    let isEnd = false;
 
     const typedText = document.getElementById("typed-text");
 
     function loop() {
-      isEnd = false;
-      typedText.innerHTML = currentPhrase.join("");
+      typedText.textContent = currentPhrase;
 
-      if (i < phrases.length) {
-        if (!isDeleting && j <= phrases[i].length) {
-          currentPhrase.push(phrases[i][j]);
-          j++;
-        }
-
-        if (isDeleting && j <= phrases[i].length) {
-          currentPhrase.pop(phrases[i][j]);
-          j--;
-        }
-
-        if (j == phrases[i].length) {
-          isEnd = true;
-          isDeleting = true;
-        }
-
-        if (isDeleting && j === 0) {
-          currentPhrase = [];
-          isDeleting = false;
-          i++;
-          if (i === phrases.length) {
-            i = 0;
-          }
-        }
+      if (!isDeleting && j <= phrases[i].length) {
+        currentPhrase = phrases[i].slice(0, j);
+        j++;
       }
-      const speedUp = Math.random() * (80 - 50) + 50;
-      const normalSpeed = Math.random() * (150 - 100) + 100;
-      const time = isEnd ? 1000 : isDeleting ? speedUp : normalSpeed;
-      setTimeout(loop, time);
+
+      if (isDeleting && j >= 0) {
+        currentPhrase = phrases[i].slice(0, j);
+        j--;
+      }
+
+      if (j === phrases[i].length + 1 && !isDeleting) {
+        isDeleting = true;
+        setTimeout(loop, 1000);
+        return;
+      }
+
+      if (j === 0 && isDeleting) {
+        isDeleting = false;
+        i++;
+        if (i === phrases.length) i = 0;
+      }
+
+      setTimeout(loop, isDeleting ? 60 : 100);
     }
 
     loop();
   </script>
 </body>
 </html>
-
