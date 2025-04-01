@@ -1,4 +1,4 @@
-# 👩🏽‍💻 Sruthijha | Data Science Portfolio
+# 👩🏽‍💻 Sruthijha Pagolu
 
 Welcome to my personal portfolio website! I'm Sruthijha, a Master's in Data Science student with a strong interest in data engineering, machine learning, and building end-to-end data projects.
 
