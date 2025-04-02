@@ -111,7 +111,7 @@
 
     const typedText = document.getElementById("typed-text");
 
-    function loop() {
+   function loop() {
   if (!isDeleting && j <= phrases[i].length) {
     currentPhrase = phrases[i].slice(0, j);
     typedText.textContent = currentPhrase;
@@ -137,6 +137,7 @@
   }
 
   setTimeout(loop, isDeleting ? 60 : 100);
+}
 }
     loop();
   </script>
