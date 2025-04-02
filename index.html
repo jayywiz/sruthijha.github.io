@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sruthijha Pagolu | Data Science Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-v2uJZQEqGHByEx2h8ACVpA3fYOcVrMIja6VVuQGhCVpQnffW6Q1PIlZyIkH+scELQuN7uL2FyW5wKjcA6+HHTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-Mx+n2vPOzQcYdZ/8ykStq0IGszmvKndKAj0r5MTChcXEL2ChKPn5nJ9HOxt7lC0a4JYjVoG+r0FztKP6MEUVkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       margin: 0;
@@ -112,33 +112,32 @@
     const typedText = document.getElementById("typed-text");
 
     function loop() {
-      typedText.textContent = currentPhrase;
+  if (!isDeleting && j <= phrases[i].length) {
+    currentPhrase = phrases[i].slice(0, j);
+    typedText.textContent = currentPhrase;
+    j++;
+  }
 
-      if (!isDeleting && j <= phrases[i].length) {
-        currentPhrase = phrases[i].slice(0, j);
-        j++;
-      }
+  if (isDeleting && j >= 0) {
+    currentPhrase = phrases[i].slice(0, j);
+    typedText.textContent = currentPhrase;
+    j--;
+  }
 
-      if (isDeleting && j >= 0) {
-        currentPhrase = phrases[i].slice(0, j);
-        j--;
-      }
+  if (j === phrases[i].length && !isDeleting) {
+    isDeleting = true;
+    setTimeout(loop, 1000); // Pause before deleting
+    return;
+  }
 
-      if (j === phrases[i].length + 1 && !isDeleting) {
-        isDeleting = true;
-        setTimeout(loop, 1000);
-        return;
-      }
+  if (j === 0 && isDeleting) {
+    isDeleting = false;
+    i++;
+    if (i === phrases.length) i = 0;
+  }
 
-      if (j === 0 && isDeleting) {
-        isDeleting = false;
-        i++;
-        if (i === phrases.length) i = 0;
-      }
-
-      setTimeout(loop, isDeleting ? 60 : 100);
-    }
-
+  setTimeout(loop, isDeleting ? 60 : 100);
+}
     loop();
   </script>
 </body>
