@@ -107,24 +107,37 @@
   const typedText = document.getElementById("typed-text");
   let i = 0;
   let j = 0;
+  let isDeleting = false;
 
-  function typePhrase() {
-    if (j < phrases[i].length) {
-      typedText.textContent += phrases[i].charAt(j);
+  function loop() {
+    const currentPhrase = phrases[i];
+    if (!isDeleting && j <= currentPhrase.length) {
+      typedText.textContent = currentPhrase.slice(0, j);
       j++;
-      setTimeout(typePhrase, 100); // Typing speed
-    } else {
-      setTimeout(() => {
-        typedText.textContent = ""; // Clear before next phrase
-        j = 0;
-        i = (i + 1) % phrases.length;
-        typePhrase();
-      }, 2000); // Pause after full phrase
+    } else if (isDeleting && j >= 0) {
+      typedText.textContent = currentPhrase.slice(0, j);
+      j--;
     }
+
+    // Pause after typing full phrase
+    if (j === currentPhrase.length && !isDeleting) {
+      isDeleting = true;
+      setTimeout(loop, 2000); // Pause before deleting
+      return;
+    }
+
+    // Move to next phrase when deletion is done
+    if (j === 0 && isDeleting) {
+      isDeleting = false;
+      i = (i + 1) % phrases.length;
+    }
+
+    setTimeout(loop, isDeleting ? 60 : 100); // Speed control
   }
 
-  typePhrase();
+  loop();
 </script>
+
 
 </body>
 </html>
