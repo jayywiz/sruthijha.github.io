@@ -97,49 +97,34 @@
       </a>
     </div>
   </header>
+<script>
+  const phrases = [
+    "a Machine Learning Enthusiast",
+    "a Data Scientist",
+    "a Data Analyst"
+  ];
 
-  <script>
-    const phrases = [
-      "a Data Scientist",
-      "a Machine Learning Enthusiast",
-      "a Data Analyst"
-    ];
-    let i = 0;
-    let j = 0;
-    let currentPhrase = "";
-    let isDeleting = false;
+  const typedText = document.getElementById("typed-text");
+  let i = 0;
+  let j = 0;
 
-    const typedText = document.getElementById("typed-text");
-
-   function loop() {
-  if (!isDeleting && j <= phrases[i].length) {
-    currentPhrase = phrases[i].slice(0, j);
-    typedText.textContent = currentPhrase;
-    j++;
+  function typePhrase() {
+    if (j < phrases[i].length) {
+      typedText.textContent += phrases[i].charAt(j);
+      j++;
+      setTimeout(typePhrase, 100); // Typing speed
+    } else {
+      setTimeout(() => {
+        typedText.textContent = ""; // Clear before next phrase
+        j = 0;
+        i = (i + 1) % phrases.length;
+        typePhrase();
+      }, 2000); // Pause after full phrase
+    }
   }
 
-  if (isDeleting && j >= 0) {
-    currentPhrase = phrases[i].slice(0, j);
-    typedText.textContent = currentPhrase;
-    j--;
-  }
+  typePhrase();
+</script>
 
-  if (j === phrases[i].length && !isDeleting) {
-    isDeleting = true;
-    setTimeout(loop, 1000); // Pause before deleting
-    return;
-  }
-
-  if (j === 0 && isDeleting) {
-    isDeleting = false;
-    i++;
-    if (i === phrases.length) i = 0;
-  }
-
-  setTimeout(loop, isDeleting ? 60 : 100);
-}
-}
-    loop();
-  </script>
 </body>
 </html>
